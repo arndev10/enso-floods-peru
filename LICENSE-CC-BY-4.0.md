@@ -8,4 +8,6 @@ Puedes copiarlos, redistribuirlos, adaptarlos y usarlos, incluso con fines comer
 
 Texto legal completo: https://creativecommons.org/licenses/by/4.0/legalcode.es
 
-Los datos de terceros incluidos o derivados (OpenStreetMap, Copernicus, Landsat, WorldPop, Open Buildings, etc.) conservan su propia licencia; ver `README.md`.
+**Excepción importante:** los resultados de `validacion/` (mapas de inundación, animaciones y cifras de exposición) derivan del relieve FABDEM (CC BY-NC-SA 4.0) y de la hidrografía MERIT Hydro y Lin et al. (2019), que solo permiten uso no comercial. Esas restricciones se mantienen: no uses esos resultados con fines comerciales.
+
+Los demás datos de terceros incluidos o derivados (OpenStreetMap, Copernicus, Landsat, WorldPop, Open Buildings, etc.) conservan su propia licencia. Ver `docs/02-fuentes-de-datos.md`.

@@ -1,34 +1,39 @@
-# 02 — Fuentes de datos
+# 02 · Fuentes de datos usadas y sus licencias
 
-Regla: **avisar el tamaño antes de descargar** y probar primero con un recorte chico. Los tamaños son estimados para la cuenca del Piura (~12,000 km²) y se confirman en la Fase 1.
+Todas son públicas y gratuitas. Cada una conserva su licencia. Si reutilizas los resultados, cita también las fuentes.
 
-## Globales (la base)
-
-| Dato | Fuente | Para qué | Cuenta | Peso estimado (cuenca) |
+| Dato | Fuente | Uso aquí | Script | Licencia / crédito |
 |---|---|---|---|---|
-| Relieve sin edificios ni árboles | **FABDEM** (30 m) | Inundación (SFINCS) | No | < 1 GB |
-| Relieve + red de ríos | **MERIT Hydro** | Delimitar cuenca, Wflow | Registro gratis | < 1 GB |
-| Relieve alternativo | Copernicus DEM GLO-30 | Contraste | No | < 1 GB |
-| Lluvia reanálisis | **ERA5 / ERA5-Land** (Copernicus CDS) | Forzar Wflow | Sí (CDS) | Cientos de MB para 4 meses |
-| Lluvia satelital | **GPM IMERG** (NASA) | Lluvia de mejor resolución | Sí (Earthdata) | Cientos de MB a pocos GB |
-| Lluvia diaria | CHIRPS | Contraste | No | Bajo |
-| Viviendas | **Google Open Buildings** | Impacto (FIAT) | No | Cientos de MB |
-| Viviendas alternativas | Microsoft Building Footprints, OpenStreetMap | Contraste | No | Bajo |
-| Población | **WorldPop**, GHSL | Personas expuestas | No | Bajo |
-| Colegios, salud, vías | OpenStreetMap | Infraestructura crítica | No | Bajo |
-| Uso y tipo de suelo | ESA WorldCover, SoilGrids | Wflow, rugosidad | No | Bajo |
-| Inundación observada | **Sentinel-1** (radar) vía Google Earth Engine | Validación (Fase 3) | Sí (GEE) | Se procesa en la nube |
-| Mapas de emergencia 2017 | Copernicus EMS, UNOSAT | Validación cruzada | No | Bajo |
+| Relieve sin edificios ni árboles (30 m) | **FABDEM** v1-2 (Hawker et al., 2022; Universidad de Bristol y Fathom) | Relieve de SFINCS | 06 | **CC BY-NC-SA 4.0 (no comercial)** |
+| Hidrografía (90 m) | **MERIT Hydro** (Yamazaki et al., 2019) | Cuenca y red de Wflow | 11, 12 | **CC BY-NC 4.0 u ODbL 1.0** |
+| Ríos con ancho y Q2 | Lin et al. (2019), red global de ríos sobre MERIT | Ríos de Wflow | 13 | **Uso no comercial** (ver la fuente) |
+| Cuencas | HydroBASINS nivel 12 (HydroSHEDS, WWF) | Delimitar la cuenca | 04 | Licencia HydroSHEDS, con atribución |
+| Pendiente (máscara del radar) | Copernicus DEM GLO-30 | Excluir laderas | 05, 19 | © DLR e.V. y © Airbus, provisto bajo COPERNICUS por la UE y la ESA |
+| Suelos | SoilGrids 2.0 (ISRIC) | Parámetros de suelo de Wflow | 11 | CC BY 4.0 |
+| Cobertura del suelo | ESA WorldCover 2021 | Wflow y rugosidad de SFINCS | 07, 11 | CC BY 4.0 |
+| Índice de área foliar | MODIS MCD15A2H (NASA) | Vegetación de Wflow | 11 | Datos NASA, sin restricción de uso |
+| Lluvia satelital | GPM IMERG V07 (NASA) | Lluvia de Wflow y SFINCS | 14 | Datos NASA, sin restricción de uso |
+| Clima reanálisis | ERA5-Land (Copernicus / ECMWF) | Lluvia alternativa, temperatura y evaporación de Wflow | 16 | Licencia Copernicus, con atribución |
+| Caudal global | GloFAS v5 (Copernicus Emergency Management Service) | Referencia de caudal | 09 | Licencia CEMS, con atribución |
+| Radar | Copernicus Sentinel-1 (ESA), vía Google Earth Engine | Mancha observada (examen) | 05, 19, 23 | Contiene datos Copernicus Sentinel modificados (2016-2017) |
+| Óptico | Landsat 8 (NASA/USGS) y Sentinel-2 (ESA) | Segunda opinión del examen | 26 | Landsat: dominio público. Sentinel-2: datos Copernicus |
+| Edificios | Google Open Buildings v3 | Exposición | 07 | CC BY 4.0 u ODbL 1.0 |
+| Población | WorldPop 2017 | Exposición | 07 | CC BY 4.0 |
+| Colegios, salud y vías | OpenStreetMap (oct-2026) | Exposición | 21 | © colaboradores de OpenStreetMap, ODbL |
 
-## Locales (Perú)
+**Respaldo no usado en la receta final:** ERA5 de Copernicus CDS (scripts 08 y 10).
 
-| Dato | Fuente | Para qué | Nota |
-|---|---|---|---|
-| Lluvia en grilla | **PISCO** (SENAMHI) | Mejor lluvia que lo global para Perú | Pública; verificar acceso a la versión diaria |
-| Caudal observado | SENAMHI / ANA, estación **Puente Sánchez Cerro** | Validar Wflow (Fase 2) | Puede requerir solicitud; buscar también en informes técnicos de 2017 |
-| Daños 2017 | INDECI (SINPAD), informes de la Reconstrucción | Comparar impacto (Fase 4) | Reportes públicos |
-| Peligros y riesgo | SIGRID (CENEPRED), GEOCATMIN (INGEMMET) | Comparar con lo "oficial" | Solo referencia |
-| Estudios de la Reconstrucción | ARCC / convenio con Reino Unido (soluciones integrales en ríos) | Posible fuente de topografía y caudales de diseño | Verificar qué es público |
+## Consecuencia para los resultados
 
-## Credenciales
-Las cuentas (CDS, Earthdata, GEE) generan claves o tokens. Van en `.env` (ignorado por git) o en el archivo que cada librería espera en el perfil del usuario (por ejemplo `~/.cdsapirc`), **nunca** dentro del repo.
+El relieve (FABDEM) y la hidrografía (MERIT Hydro y Lin et al.) se publican **solo para uso no comercial**. Los mapas de inundación, animaciones y cifras de exposición derivan de ellos, así que **su uso comercial no está permitido** sin revisar esas licencias. Este proyecto es sin fines de lucro.
+
+## Datos locales del Perú
+
+| Dato | Fuente | Estado |
+|---|---|---|
+| Pico de 2017 en Sánchez Cerro (3,468 m³/s, 27-mar 12:00) | COEN-INDECI | Usado como referencia |
+| Serie horaria de caudal y nivel de Sánchez Cerro, curva de descarga | Proyecto Especial Chira-Piura (Gobierno Regional de Piura) | Solicitada por acceso a la información pública (oct-2026) |
+| Lluvia en grilla PISCO | SENAMHI | No usada todavía |
+| Daños de 2017 | INDECI (SINPAD) | Pendiente para contrastar la exposición |
+
+Las licencias se transcriben de cada fuente a octubre de 2026. Ante la duda, manda la página oficial de cada conjunto de datos.

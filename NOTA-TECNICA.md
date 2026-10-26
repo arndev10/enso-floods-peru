@@ -1,6 +1,6 @@
 # Nota técnica: simulación de la inundación del río Piura, Niño Costero 2017
 
-**Autor:** Arnold Torres Larriega · **Fecha:** octubre de 2026 · **Licencia:** CC BY 4.0
+**Autor:** Arnold Torres Larriega · **Fecha:** octubre de 2026 · **Licencia del texto:** CC BY 4.0 (los resultados son de uso no comercial, ver README)
 **Estado:** versión 1, **sin calibrar con caudal observado** (pedido por acceso a la información pública en trámite).
 
 > Demostración técnica, no es un pronóstico oficial. Sigue a INDECI, SENAMHI y el ENFEN.
@@ -59,7 +59,7 @@
 | **Radar + Landsat (zona despejada)** | **0.505** | 66% | 32% |
 
 - De las "falsas alarmas" despejadas, **48% eran agua en Landsat**: el radar no ve el agua entre cultivos, porque la vegetación inundada rebota la señal. Como controles, los aciertos son agua en Landsat en el 98% de los casos y las zonas secas para ambos solo en el 5%.
-- Un CSI de 0.5 está en el rango que la literatura acepta para modelos con datos globales y sin calibración local.
+- Como orden de magnitud, en estudios de inundación con datos globales se suele considerar razonable un CSI cercano a 0.5. Aquí además la referencia es imperfecta: radar con puntos ciegos y Landsat cuatro días después.
 
 ### 4.3 Exposición (máximo del evento)
 
@@ -91,7 +91,10 @@ La franja de 10–60 cm está inflada por el encharcamiento de lluvia y por agua
 ## Referencias principales
 
 - Farías, M., Olivares, A., Neyra, D. y González, I. (2020). *Pronóstico de caudales del río Piura calibrado con El Niño Costero 2017.* LACCEI 2020.
-- Reyes, J. y Terrones (2020). LACCEI 2020, FP275. DOI 10.18687/LACCEI2020.1.1.275.
-- COEN-INDECI, reportes de marzo de 2017. ENFEN, Comunicados Oficiales N° 03-2017 y 05-2017.
-- Deltares: Wflow, SFINCS, HydroMT (documentación oficial).
+- Reyes Salazar, J. et al. (2020). LACCEI 2020, artículo FP275. DOI [10.18687/LACCEI2020.1.1.275](https://doi.org/10.18687/LACCEI2020.1.1.275).
+- COEN-INDECI, reporte de emergencia del 27-mar-2017 (pico de 3,468 m³/s en Sánchez Cerro).
+- Hawker, L. et al. (2022). FABDEM. *Environmental Research Letters* 17, 024016.
+- Yamazaki, D. et al. (2019). MERIT Hydro. *Water Resources Research* 55, 5053–5073.
+- Lin, P. et al. (2019). Global reconstruction of naturalized river flows. *Water Resources Research* 55, 6499–6516.
+- Deltares: Wflow, SFINCS y HydroMT (documentación oficial, ver [docs/01-stack-deltares.md](docs/01-stack-deltares.md)).
 - Fuentes de datos y sus licencias: [docs/02-fuentes-de-datos.md](docs/02-fuentes-de-datos.md).
