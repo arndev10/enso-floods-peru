@@ -29,7 +29,7 @@ for nombre, filtro in CONSULTAS.items():
     for url in SERVIDORES * 2:
         try:
             respuesta = requests.post(url, data={"data": consulta}, timeout=180,
-                                      headers={"User-Agent": "fenomeno-nino-peru (demo sin fines de lucro)"})
+                                      headers={"User-Agent": "enso-floods-peru (demo sin fines de lucro)"})
             respuesta.raise_for_status()
             elementos = respuesta.json()["elements"]
             break

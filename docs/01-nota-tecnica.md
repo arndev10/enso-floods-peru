@@ -48,7 +48,7 @@
 - **Ningún valor único acierta 2017 y 1998 a la vez.** Se adopta 20 mm/d como valor central y 20–50 mm/d como banda de incertidumbre.
 - IMERG clava la fecha y ERA5-Land se acerca a la magnitud. La lluvia real de 2017 probablemente está entre ambas.
 
-![Caudal en Sánchez Cerro](validacion/caudal-sanchez-cerro-2017.png)
+![Caudal en Sánchez Cerro](../validacion/caudal-sanchez-cerro-2017.png)
 
 ### 4.2 Extensión (SFINCS, corrida final)
 
@@ -96,5 +96,5 @@ La franja de 10–60 cm está inflada por el encharcamiento de lluvia y por agua
 - Hawker, L. et al. (2022). FABDEM. *Environmental Research Letters* 17, 024016.
 - Yamazaki, D. et al. (2019). MERIT Hydro. *Water Resources Research* 55, 5053–5073.
 - Lin, P. et al. (2019). Global reconstruction of naturalized river flows. *Water Resources Research* 55, 6499–6516.
-- Deltares: Wflow, SFINCS y HydroMT (documentación oficial, ver [docs/01-stack-deltares.md](docs/01-stack-deltares.md)).
-- Fuentes de datos y sus licencias: [docs/02-fuentes-de-datos.md](docs/02-fuentes-de-datos.md).
+- Deltares: Wflow, SFINCS y HydroMT (documentación oficial, ver [04-stack-deltares.md](04-stack-deltares.md)).
+- Fuentes de datos y sus licencias: [03-fuentes-de-datos.md](03-fuentes-de-datos.md).

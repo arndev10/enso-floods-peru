@@ -74,7 +74,7 @@ osm = []
 for servidor in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
     try:
         respuesta = requests.post(servidor, data={"data": consulta}, timeout=120,
-                                  headers={"User-Agent": "fenomeno-nino-peru (demo sin fines de lucro)"})
+                                  headers={"User-Agent": "enso-floods-peru (demo sin fines de lucro)"})
         respuesta.raise_for_status()
         osm = respuesta.json()["elements"]
         break

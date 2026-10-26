@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Si usas este trabajo, por favor cítalo así."
+title: "ENSO Floods Peru: Piura 2017 (Niño Costero) con Wflow y SFINCS"
+abstract: "Reconstrucción abierta de la inundación del río Piura de 2017 con el software de Deltares (Wflow, SFINCS, HydroMT) y datos globales, validada contra Sentinel-1 y Landsat 8. Demostración técnica, no pronóstico oficial."
+authors:
+  - family-names: "Torres Larriega"
+    given-names: "Arnold"
+version: "1.0.0"
+date-released: "2026-10-26"
+license: MIT
+repository-code: "https://github.com/arndev10/enso-floods-peru"
+keywords: ["ENSO", "El Niño", "Niño Costero", "Piura", "flood modeling", "SFINCS", "Wflow", "HydroMT", "Sentinel-1", "Deltares"]

@@ -6,7 +6,7 @@ Probado en **Windows 11** con Git Bash. El `pixi.toml` declara solo `win-64`. En
 
 - [pixi](https://pixi.sh) para los entornos de Python.
 - [Julia](https://julialang.org) 1.13 (Wflow 1.0.4). Una vez: `julia --project=julia -e "using Pkg; Pkg.instantiate()"`.
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) para SFINCS (`deltares/sfincs-cpu`). Ver [docs/03-sfincs-docker.md](docs/03-sfincs-docker.md).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) para SFINCS (`deltares/sfincs-cpu`). Ver [05-sfincs-docker.md](05-sfincs-docker.md).
 - Cuentas gratuitas: Google Earth Engine (con un proyecto de Cloud), Copernicus CDS/EWDS (para GloFAS) y NASA Earthdata (opcional: IMERG se baja por Earth Engine).
 - Unos **10 GB** libres en disco para `datos/` y `modelos/`.
 

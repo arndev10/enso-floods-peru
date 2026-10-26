@@ -1,7 +1,7 @@
 # Entorno del proyecto (pixi + conda-forge). Crear con: pixi install
 # Ejecutar algo dentro del entorno: pixi run python scripts/<script>.py
 [workspace]
-name = "fenomeno-nino-peru"
+name = "enso-floods-peru"
 channels = ["conda-forge"]
 platforms = ["win-64"]
 
