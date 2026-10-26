@@ -1,0 +1,49 @@
+# Entorno del proyecto (pixi + conda-forge). Crear con: pixi install
+# Ejecutar algo dentro del entorno: pixi run python scripts/<script>.py
+[workspace]
+name = "fenomeno-nino-peru"
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[dependencies]
+python = "3.11.*"
+hydromt_sfincs = "*"
+hydromt_wflow = "*"
+jupyterlab = "*"
+matplotlib = "*"
+cdsapi = "*"
+earthengine-api = "*"
+python-dotenv = "*"
+
+# hydromt_fiat no está en conda-forge, solo en PyPI
+[pypi-dependencies]
+hydromt_fiat = "*"
+garua = ">=0.30.0, <0.31"
+
+# La consola de Windows usa cp1252; sin esto fallan tildes, "²" y flechas en los print
+[activation.env]
+PYTHONIOENCODING = "utf-8"
+PYTHONUTF8 = "1"
+
+[tasks]
+lab = "jupyter lab"
+verificar = "python scripts/00_verificar_entorno.py"
+
+# Entorno aparte para Wflow: hydromt_wflow 1.x (escribe el TOML de Wflow.jl 1.0) necesita
+# hydromt >= 1.4, que choca con hydromt_fiat 0.5 del entorno por defecto.
+# Uso: pixi run -e wflow python scripts/<script>.py
+[feature.wflow.dependencies]
+hydromt_wflow = ">=1.1"
+python = "3.11.*"
+matplotlib = "*"
+python-dotenv = "*"
+cdsapi = "*"
+earthengine-api = "*"
+
+
+[feature.wflow.activation.env]
+PYTHONIOENCODING = "utf-8"
+PYTHONUTF8 = "1"
+
+[environments]
+wflow = { features = ["wflow"], no-default-feature = true }

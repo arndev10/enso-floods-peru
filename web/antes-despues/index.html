@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piura 2017 desde el espacio</title>
+<style>
+  :root {
+    --fondo: #f6f5f2; --texto: #1b1b1b; --suave: #5c5c5c; --linea: #d9d6cf;
+    --acento: #1f6fff; --aviso: #fff4e0; --aviso-borde: #f0b44c; --tarjeta: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo: #121417; --texto: #ececec; --suave: #a3a3a3; --linea: #2c3036;
+      --acento: #6f9dff; --aviso: #2a2416; --aviso-borde: #8a6a2a; --tarjeta: #1a1d21;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo: #121417; --texto: #ececec; --suave: #a3a3a3; --linea: #2c3036;
+    --acento: #6f9dff; --aviso: #2a2416; --aviso-borde: #8a6a2a; --tarjeta: #1a1d21;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 16px 48px; }
+  h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2; margin: 0 0 8px; }
+  .bajada { color: var(--suave); margin: 0 0 20px; }
+  .comparador { position: relative; width: 100%; aspect-ratio: 1100 / 1870; max-height: 80vh;
+                margin: 0 auto; overflow: hidden; border-radius: 10px; background: #000;
+                touch-action: none; user-select: none; cursor: ew-resize; }
+  .comparador img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  .capa-antes { clip-path: inset(0 calc(100% - var(--corte, 50%)) 0 0); }
+  .divisor { position: absolute; top: 0; bottom: 0; left: var(--corte, 50%); width: 3px; margin-left: -1.5px;
+             background: #fff; box-shadow: 0 0 6px rgba(0,0,0,.6); pointer-events: none; }
+  .divisor::after { content: "◀ ▶"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                    background: #fff; color: #111; font-size: 12px; padding: 6px 8px; border-radius: 999px; white-space: nowrap; }
+  .etiqueta { position: absolute; top: 10px; padding: 4px 10px; border-radius: 6px; font-size: 13px;
+              background: rgba(0,0,0,.65); color: #fff; pointer-events: none; }
+  .etiqueta.izq { left: 10px; } .etiqueta.der { right: 10px; }
+  .controles { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 14px 0 22px; }
+  .controles label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+  input[type="range"] { flex: 1 1 220px; accent-color: var(--acento); }
+  .tarjeta { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 10px; padding: 16px 18px; margin: 0 0 14px; }
+  .tarjeta h2 { font-size: 1.05rem; margin: 0 0 6px; }
+  .tarjeta p, .tarjeta ul { margin: 0; color: var(--suave); }
+  .tarjeta ul { padding-left: 20px; }
+  .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 0 0 14px; }
+  .cifra { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 10px; padding: 14px; }
+  .cifra b { display: block; font-size: 1.6rem; color: var(--acento); line-height: 1.1; }
+  .cifra span { color: var(--suave); font-size: .9rem; }
+  .aviso { background: var(--aviso); border: 1px solid var(--aviso-borde); border-radius: 10px; padding: 14px 16px; margin: 0 0 14px; }
+  .fuentes { font-size: .85rem; color: var(--suave); }
+  a { color: var(--acento); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Piura 2017, vista desde el espacio</h1>
+  <p class="bajada">Arrastra la barra. A la izquierda, Piura en temporada seca (fines de 2016). A la derecha, la misma zona el
+    1 de abril de 2017, cinco días después de que el río se desbordara en la ciudad. Lo oscuro es agua: el radar del satélite
+    ve a través de las nubes.</p>
+
+  <div class="comparador" id="comparador" role="slider" aria-label="Comparar antes y después" aria-valuemin="0"
+       aria-valuemax="100" aria-valuenow="50" tabindex="0">
+    <img id="despues" src="despues-agua.png" alt="Radar del 1 de abril de 2017 con el agua resaltada en azul">
+    <img class="capa-antes" src="antes.png" alt="Radar de Piura en temporada seca, fines de 2016">
+    <div class="divisor"></div>
+    <span class="etiqueta izq">Seco · fines de 2016</span>
+    <span class="etiqueta der">1 de abril de 2017</span>
+  </div>
+
+  <div class="controles">
+    <input type="range" id="barra" min="0" max="100" value="50" aria-label="Posición de la barra">
+    <label><input type="checkbox" id="resaltar" checked> Resaltar el agua nueva en azul</label>
+  </div>
+
+  <div class="cifras">
+    <div class="cifra"><b>369 km²</b><span>bajo el agua el 1-abr-2017 en esta zona, según el radar</span></div>
+    <div class="cifra"><b>3,468 m³/s</b><span>caudal del río en la ciudad el 27-mar a mediodía (COEN-INDECI)</span></div>
+    <div class="cifra"><b>~1,900 m³/s</b><span>a partir de este caudal el río ya inunda la ciudad</span></div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>¿Por qué hay tanta agua al sur, lejos del río?</h2>
+    <p>El agua que se salió en el Bajo Piura no volvió al cauce: corrió por la pendiente del desierto hacia la depresión de
+      Sechura, donde se formó la laguna conocida como La Niña. Por eso la mayor parte de la inundación quedó fuera de la cuenca
+      oficial del río.</p>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Lo que el radar no ve</h2>
+    <ul>
+      <li><strong>Dentro de la ciudad:</strong> los edificios rebotan la señal y esconden el agua. Piura sí se inundó, aunque aquí no se vea azul.</li>
+      <li><strong>El fondo de algunas lagunas:</strong> la arena seca ya se ve oscura antes del evento, así que el cambio no se detecta.</li>
+    </ul>
+  </div>
+
+  <div class="aviso">
+    <strong>Esto es una demostración técnica, no un aviso oficial.</strong> Ante una emergencia, sigue siempre a INDECI, SENAMHI y al ENFEN.
+  </div>
+
+  <p class="fuentes">Imágenes: Copernicus Sentinel-1 (ESA), procesadas en Google Earth Engine con detección de cambio contra la
+    línea base seca. Caudal: informe de emergencia del COEN-INDECI del 27-mar-2017. Proyecto abierto <em>fenomeno-nino-peru</em>,
+    hecho con herramientas de Deltares (Países Bajos).</p>
+</main>
+<script>
+  const comparador = document.getElementById("comparador");
+  const barra = document.getElementById("barra");
+  const despues = document.getElementById("despues");
+
+  function mover(porcentaje) {
+    const p = Math.min(100, Math.max(0, porcentaje));
+    comparador.style.setProperty("--corte", p + "%");
+    comparador.setAttribute("aria-valuenow", Math.round(p));
+    barra.value = p;
+  }
+  function desdePuntero(evento) {
+    const caja = comparador.getBoundingClientRect();
+    mover(((evento.clientX - caja.left) / caja.width) * 100);
+  }
+
+  let arrastrando = false;
+  comparador.addEventListener("pointerdown", (e) => { arrastrando = true; comparador.setPointerCapture(e.pointerId); desdePuntero(e); });
+  comparador.addEventListener("pointermove", (e) => { if (arrastrando) desdePuntero(e); });
+  comparador.addEventListener("pointerup", () => { arrastrando = false; });
+  comparador.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") mover(Number(barra.value) - 5);
+    if (e.key === "ArrowRight") mover(Number(barra.value) + 5);
+  });
+  barra.addEventListener("input", () => mover(Number(barra.value)));
+  document.getElementById("resaltar").addEventListener("change", (e) => {
+    despues.src = e.target.checked ? "despues-agua.png" : "despues.png";
+  });
+  mover(50);
+</script>
+</body>
+</html>

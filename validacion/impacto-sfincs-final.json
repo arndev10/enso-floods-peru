@@ -1,0 +1,62 @@
+{
+  "modelo": "sfincs-final",
+  "nota": "Exposición (qué queda bajo ≥10 cm de agua en el máximo del evento), no daño económico.",
+  "area_inundada_km2": 1772.8,
+  "edificios": 78755,
+  "personas": 237200,
+  "colegios": 351,
+  "centros_salud": 37,
+  "km_vias_principales_con_30cm_o_mas": 115.3,
+  "por_profundidad": [
+    {
+      "profundidad": "tobillo",
+      "rango_m": "0.1–0.3",
+      "area_km2": 302.8,
+      "edificios": 13450,
+      "personas": 36600,
+      "colegios": 73,
+      "salud": 8
+    },
+    {
+      "profundidad": "rodilla",
+      "rango_m": "0.3–0.6",
+      "area_km2": 705.1,
+      "edificios": 14427,
+      "personas": 39800,
+      "colegios": 71,
+      "salud": 11
+    },
+    {
+      "profundidad": "cintura",
+      "rango_m": "0.6–1.2",
+      "area_km2": 405.7,
+      "edificios": 21719,
+      "personas": 63800,
+      "colegios": 98,
+      "salud": 10
+    },
+    {
+      "profundidad": "pecho",
+      "rango_m": "1.2–1.8",
+      "area_km2": 150.6,
+      "edificios": 12053,
+      "personas": 38700,
+      "colegios": 49,
+      "salud": 6
+    },
+    {
+      "profundidad": "sobre la cabeza",
+      "rango_m": "> 1.8",
+      "area_km2": 208.6,
+      "edificios": 17106,
+      "personas": 58300,
+      "colegios": 60,
+      "salud": 2
+    }
+  ],
+  "fuentes": {
+    "edificios": "Google Open Buildings v3 (la ciudad de hoy)",
+    "personas": "WorldPop 2017",
+    "colegios_y_salud_y_vias": "OpenStreetMap (oct-2026)"
+  }
+}

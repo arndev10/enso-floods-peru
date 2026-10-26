@@ -1,0 +1,39 @@
+{
+  "modelo": "sfincs-final",
+  "landsat": "LC08 2017-04-04, MNDWI > 0, solo píxeles sin nube ni sombra",
+  "cobertura_despejada_de_la_zona_evaluable": 0.558,
+  "falsas_alarmas": {
+    "km2_despejados": 237.3,
+    "km2_con_agua_en_landsat": 113.4,
+    "fraccion": 0.478
+  },
+  "aciertos_control": {
+    "km2_despejados": 152.9,
+    "km2_con_agua_en_landsat": 150.3,
+    "fraccion": 0.983
+  },
+  "omisiones": {
+    "km2_despejados": 30.8,
+    "km2_con_agua_en_landsat": 30.0,
+    "fraccion": 0.975
+  },
+  "seco_en_ambos": {
+    "km2_despejados": 2231.5,
+    "km2_con_agua_en_landsat": 106.3,
+    "fraccion": 0.048
+  },
+  "examen_referencia_combinada": {
+    "zona": "evaluable por radar, activa en el modelo y despejada en Landsat",
+    "CSI": 0.505,
+    "tasa_acierto": 0.66,
+    "tasa_falsa_alarma": 0.317,
+    "aciertos_km2": 266.4,
+    "omisiones_km2": 137.1,
+    "falsas_alarmas_km2": 123.8
+  },
+  "examen_solo_radar_misma_zona": {
+    "CSI": 0.363,
+    "tasa_acierto": 0.832,
+    "tasa_falsa_alarma": 0.608
+  }
+}

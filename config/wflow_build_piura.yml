@@ -1,0 +1,83 @@
+# Receta HydroMT para armar el modelo Wflow SBM del río Piura hasta el puente Sánchez Cerro.
+# Basada en examples/wflow_build.yml de hydromt_wflow v1.1.0, adaptada a nuestro catálogo
+# (datos/wflow/catalogo_piura.yml). Sin embalses, lagos ni glaciares: la cuenca no tiene
+# embalses grandes aguas arriba de la ciudad.
+steps:
+  - setup_config:
+      data:
+        time.starttime: 2016-07-01T00:00:00
+        time.endtime: 2017-05-31T00:00:00
+        time.timestepsecs: 86400
+        input.path_forcing: inmaps-imerg-2016-2017.nc
+        output.netcdf_grid.path: output.nc
+        output.netcdf_grid.compressionlevel: 1
+        output.netcdf_grid.variables.river_water__volume_flow_rate: river_q
+        output.csv.path: output.csv
+
+  - setup_basemaps:
+      hydrography_fn: merit_hydro
+      basin_index_fn: merit_hydro_index
+      upscale_method: ihu
+      res: 0.00833333             # ~1 km
+      region:
+        subbasin: [-80.6265, -5.1945]   # salida en el puente Sánchez Cerro (ciudad de Piura)
+        uparea: 5000                    # se ajusta al cauce con más de 5,000 km² de área drenada
+
+  - setup_rivers:
+      hydrography_fn: merit_hydro
+      river_geom_fn: rivers_lin2019   # ancho a cauce lleno y caudal Q2 de Lin et al. (2019)
+      river_upa: 30
+      rivdph_method: powlaw
+      min_rivdph: 1
+      min_rivwth: 30
+      slope_len: 2000
+      smooth_len: 5000
+      river_routing: kinematic_wave
+
+  - setup_river_roughness:
+
+  - setup_lulcmaps:
+      lulc_fn: esa_worldcover
+      lulc_mapping_fn: esa_worldcover_mapping_default
+
+  - setup_laimaps:
+      lai_fn: modis_lai
+
+  - setup_soilmaps:
+      soil_fn: soilgrids_2020
+      ptf_ksatver: brakensiek
+
+  - setup_outlets:
+      river_only: True
+
+  - setup_gauges:
+      gauges_fn: geo/estaciones-caudal.geojson
+      snap_to_river: True
+      derive_subcatch: False
+
+  # Lluvia: IMERG (satélite NASA, scripts/14). La alternativa con ERA5-Land se arma con
+  # config/wflow_update_lluvia_era5land.yml. Temperatura y evaporación: ERA5-Land (scripts/16).
+  # Makkink solo necesita temperatura, presión y radiación solar entrante.
+  - setup_precip_forcing:
+      precip_fn: imerg_diario
+
+  - setup_temp_pet_forcing:
+      temp_pet_fn: era5land_diario
+      press_correction: True
+      temp_correction: True
+      dem_forcing_fn: era5land_orografia
+      pet_method: makkink
+      skip_pet: False
+
+  - setup_constant_pars:
+      "subsurface_water__horizontal_to_vertical_saturated_hydraulic_conductivity_ratio": 100
+      "snowpack__degree_day_coefficient": 3.75653
+      "soil_surface_water__infiltration_reduction_parameter": 0.038
+      "vegetation_canopy_water__mean_evaporation_to_mean_precipitation_ratio": 0.11
+      "compacted_soil_surface_water__infiltration_capacity": 10
+      "soil_water_saturated_zone_bottom__max_leakage_volume_flux": 0
+      "soil_wet_root__sigmoid_function_shape_parameter": -500
+      "atmosphere_air__snowfall_temperature_threshold": 0
+      "atmosphere_air__snowfall_temperature_interval": 2
+      "snowpack__melting_temperature_threshold": 0
+      "snowpack__liquid_water_holding_capacity": 0.1

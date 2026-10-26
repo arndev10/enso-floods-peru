@@ -1,0 +1,12 @@
+{
+  "fecha_evento": "2017-04-01",
+  "linea_base": "mediana sep-dic 2016 (descendente)",
+  "area_inundada_km2_cuenca_completa": 92.4,
+  "area_inundada_km2_recuadro_bajo_piura": 369.5,
+  "umbrales": {
+    "vv_evento_db": -16,
+    "caida_db": 3,
+    "pendiente_max_grados": 5,
+    "agua_permanente_ocurrencia": 50
+  }
+}

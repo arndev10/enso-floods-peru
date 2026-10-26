@@ -1,0 +1,39 @@
+{
+  "modelo": "sfincs-bajo-piura-inf",
+  "landsat": "LC08 2017-04-04, MNDWI > 0, solo píxeles sin nube ni sombra",
+  "cobertura_despejada_de_la_zona_evaluable": 0.558,
+  "falsas_alarmas": {
+    "km2_despejados": 160.6,
+    "km2_con_agua_en_landsat": 93.1,
+    "fraccion": 0.58
+  },
+  "aciertos_control": {
+    "km2_despejados": 126.9,
+    "km2_con_agua_en_landsat": 124.2,
+    "fraccion": 0.979
+  },
+  "omisiones": {
+    "km2_despejados": 56.9,
+    "km2_con_agua_en_landsat": 56.1,
+    "fraccion": 0.986
+  },
+  "seco_en_ambos": {
+    "km2_despejados": 2308.2,
+    "km2_con_agua_en_landsat": 126.6,
+    "fraccion": 0.055
+  },
+  "examen_referencia_combinada": {
+    "zona": "evaluable por radar, activa en el modelo y despejada en Landsat",
+    "CSI": 0.467,
+    "tasa_acierto": 0.545,
+    "tasa_falsa_alarma": 0.235,
+    "aciertos_km2": 220.0,
+    "omisiones_km2": 183.5,
+    "falsas_alarmas_km2": 67.5
+  },
+  "examen_solo_radar_misma_zona": {
+    "CSI": 0.368,
+    "tasa_acierto": 0.69,
+    "tasa_falsa_alarma": 0.559
+  }
+}

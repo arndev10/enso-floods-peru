@@ -1,0 +1,4 @@
+{"type": "FeatureCollection", "features": [
+ {"type": "Feature", "properties": {"index": 1, "nombre": "Puente Sanchez Cerro", "operador": "PECHP (Gobierno Regional de Piura)", "nota": "ubicacion aproximada"},
+  "geometry": {"type": "Point", "coordinates": [-80.6265, -5.1945]}}
+]}

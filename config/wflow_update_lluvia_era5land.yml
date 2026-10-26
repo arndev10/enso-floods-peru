@@ -1,0 +1,14 @@
+# Cambia solo la lluvia del modelo Wflow de Piura a ERA5-Land (para comparar contra IMERG).
+# Uso: hydromt update wflow_sbm modelos/wflow-piura -o modelos/wflow-piura-era5land -i <este archivo> -d datos/wflow/catalogo_piura.yml
+steps:
+  - setup_config:
+      data:
+        input.path_forcing: inmaps-era5land-2016-2017.nc
+  - setup_precip_forcing:
+      precip_fn: era5land_diario
+  - setup_temp_pet_forcing:
+      temp_pet_fn: era5land_diario
+      press_correction: True
+      temp_correction: True
+      dem_forcing_fn: era5land_orografia
+      pet_method: makkink

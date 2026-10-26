@@ -1,0 +1,26 @@
+{
+  "modelo": "sfincs-bajo-piura",
+  "umbral_profundidad_m": 0.1,
+  "resultados": [
+    {
+      "momento": "a la hora del satélite (01-Apr 11:00 UTC)",
+      "aciertos_km2": 339.0,
+      "omisiones_km2": 26.4,
+      "falsas_alarmas_km2": 911.7,
+      "CSI": 0.265,
+      "tasa_acierto": 0.928,
+      "tasa_falsa_alarma": 0.729,
+      "simulado_total_km2": 1972.8
+    },
+    {
+      "momento": "máximo del evento",
+      "aciertos_km2": 349.1,
+      "omisiones_km2": 16.3,
+      "falsas_alarmas_km2": 1048.2,
+      "CSI": 0.247,
+      "tasa_acierto": 0.955,
+      "tasa_falsa_alarma": 0.75,
+      "simulado_total_km2": 2124.8
+    }
+  ]
+}

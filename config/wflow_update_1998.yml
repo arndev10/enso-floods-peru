@@ -1,0 +1,19 @@
+# Escenario / validación Niño 1997-98: mismo modelo de Piura, clima ERA5-Land de jul-1997 a may-1998.
+# IMERG no existe antes de 2000. Pico observado en Sánchez Cerro: 4,424 m³/s (máximo histórico).
+# Uso: copiar a modelos/_base-estatica solo staticmaps.nc, staticgeoms/ y wflow_sbm.toml de modelos/wflow-piura
+# (sin el clima de 2017, si no hydromt mezcla ambos periodos) y luego:
+# hydromt update wflow_sbm modelos/_base-estatica -o modelos/wflow-piura-1998 -i <este archivo> -d datos/wflow/catalogo_piura.yml
+steps:
+  - setup_config:
+      data:
+        time.starttime: 1997-07-01T00:00:00
+        time.endtime: 1998-05-31T00:00:00
+        input.path_forcing: inmaps-era5land-1997-1998.nc
+  - setup_precip_forcing:
+      precip_fn: era5land_diario_1998
+  - setup_temp_pet_forcing:
+      temp_pet_fn: era5land_diario_1998
+      press_correction: True
+      temp_correction: True
+      dem_forcing_fn: era5land_orografia
+      pet_method: makkink
